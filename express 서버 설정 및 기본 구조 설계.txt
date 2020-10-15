@@ -1,0 +1,58 @@
+참조 : https://junspapa-itdev.tistory.com/7?category=781922
+https://dydals5678.tistory.com/88
+
+
+Express 정의 및 주요가능
+: express는 node.js를 위한 빠르고 개방적이며 간결한 웹 애플리케이션 프레임워크입니다.
+
+
+
+주요 기능
+* HTTP 통신 요청(Request; GET, POST, DELETE 등)에 대한 핸들러를 만듭니다.
+* 템플릿에 데이터를 넣어 응답(response)을 만들기 위해 view의 렌더링 엔진과 결합합니다.
+* 접속을 위한 포트나 응답 렌더링을 위한 템플릿 위치같은 공통 웹 어플리케이션을 세팅합니다.
+* 핸들링 파이프라인(request handling pipeline) 중 필요한 곳에 추가적인 미들웨이 처리 요청을 추가합니다.
+
+
+
+Express 설치
+: npm을 이용해서 express를 설치합니다.
+$ npm installexpress --save //dependencies에 추가
+
+
+
+express 라우팅 (서버 실행을 위한 index.js 정의)
+: 라우팅은 애플리케이션 엔드 포인트(url)의 정의, 그리고 url이 클라이언트 요청에 응답하는 방식을 말한다.
+(( 참조 : 파일 'express routes' ))
+
+require : module.exports를 리턴한다. (함수로 모듈을 가지고 온다.)
+
+매우 기본적인 라우터의 예다.
+const express = require('express')
+const app = express();
+const PORT = 4000;
+
+const handlehome = (req, res) => {
+  console.log(req);
+  console.log("헨들홈");
+  res.send("Hello From Home);
+}
+
+const handleProfile = (req, res) => {
+  res.send("You are profile");
+}
+
+app.get('/', handlehome); // root로 접속한 경로에 response로 helloworld를 받아서 출력해준다.
+app.get('/profile', handleProfile); //  경로 http://localhost:4000/profile
+
+console.log('시작');
+
+const handleListening = () => { //애로우 함수로 function을 만들었다.
+  console.log(`Listening on : http://localhost:${PORT}`);
+}
+
+app.listen(PORT, handleListening); //port 번호 설정
+//node 실행 방법 node index.js
+express를 불러와서 app 변수에 담아 port번호를 달고, url 경로를 맵핑시켜주는게 전부다.
+위 소스처럼 express는 url 경로를 쉽게 해주고
+url 경로마다 호출해서 보여줄 함수들을 쉽게 정리할 수 있다.

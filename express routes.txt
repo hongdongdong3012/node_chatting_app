@@ -1,0 +1,51 @@
+https://expressjs.com/ko/guide/routing.html
+라우팅은 애플리케이션 엔드 포인트(URL)의 정의, 그리고 URL이 클라이언트 요청에 응답하는 방식을 말한다.
+
+
+
+다음 코드는 매우 기본적인 라우트의 예입니다.
+var express = require('express')
+var app = express();
+
+app.get('/', function(req, res){
+  res.send('hello world')
+})
+
+
+
+라우트 메소드
+: HTTP 메소드 중 하나로부터 파생되며, express 클래스의 인스턴스에 연결됩니다.
+다음코드는 앱의 루트에 대한 GET 및 POST 메소드에 대해 정의된 라우트의 예입니다.
+// GET method route
+app.get('/', function(req, res){
+  res.send('GET request to the homepage')
+});
+
+// POST method route
+app.post('/', function(req, res){
+  res.send('POST request to the homepage)
+});
+
+Express는 HTTP 메소드에 해당하는 다음과 같은 라우팅 메소드를 지원합니다. 
+get, post, put, head, delete, options, trace, copy, lock, mkcol, move, purge, propfind, proppatch, unlock, report, mkactivity, checkout, merge, m-search, notify, subscribe, unsubscribe, patch, search 및 connect.
+
+
+
+
+라우트 경로
+:요청 메소드와의 조합을 통해, 요청이 이루어질 수 있는 엔드포인트를 정의합니다. 
+라우트 경로는 문자열, 문자열 패턴 또는 정규식일 수 있습니다.
+// 다음 라우트 경로는 요청을 루트 라우트 /에 일치시킵니다.
+app.get('/',function(req, res){
+  res.send('root')
+});
+
+// 다음 라우트 경로는 /about에 일치시킵니다.
+app.get('/about',function(req, res){
+  res.send('about')
+})
+
+// 다음 라우트 경로는 /random.text에 일치시킵니다.
+app.get('/random.text', function(req, res){
+  res.send('random.text')
+});
